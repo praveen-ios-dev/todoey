@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "todoey/TodoeyViewController.swift"
+            timestampString = "601128962.170391"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "addItemButtonPressed(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "todoey.TodoeyViewController.addItemButtonPressed(__C.UIBarButtonItem) -&gt; ()"
+                  moduleName = "todoey"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/KUMAR.PRAVEEN/Desktop/demo/swiftLanguage/todoey/todoey/TodoeyViewController.swift"
+                  timestampString = "601128240.412318"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "165">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[2] = Value Promoted from Box&gt; of closure #1 (__C.UIAlertAction) -&gt; () in todoey.TodoeyViewController.addItemButtonPressed(__C.UIBarButtonItem) -&gt; ()"
+                  moduleName = "todoey"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/KUMAR.PRAVEEN/Desktop/demo/swiftLanguage/todoey/todoey/TodoeyViewController.swift"
+                  timestampString = "601128240.414752"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "145">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

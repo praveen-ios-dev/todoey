@@ -32,7 +32,14 @@
                             <outlet property="delegate" destination="s93-IF-sKL" id="iwZ-kt-Wcc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Todoey" id="YzX-9J-9gQ"/>
+                    <navigationItem key="navigationItem" title="Todoey" id="YzX-9J-9gQ">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="DYy-y7-NfP">
+                            <color key="tintColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="addItemButtonPressed:" destination="s93-IF-sKL" id="fgy-xR-jXk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5e0-3P-2YN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -41,7 +48,7 @@
         <!--Navigation Controller-->
         <scene sceneID="z6b-hd-qT8">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="3Ai-nd-Q3r" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="3Ai-nd-Q3r" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="NTX-Tk-FYV">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

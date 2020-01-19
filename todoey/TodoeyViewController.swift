@@ -12,7 +12,7 @@ class TodoeyViewController: UITableViewController {
     
     
     
-    let itemArray = ["take veg" , "take egg", "watch cricket", "complete Swift","become a developer"]
+    var itemArray : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +42,22 @@ class TodoeyViewController: UITableViewController {
         
     }
     
+    @IBAction func addItemButtonPressed(_ sender: UIBarButtonItem) {
+        var textField = UITextField()
+        let alert = UIAlertController(title: "Add new todoey", message: nil, preferredStyle: .alert)
+        let actions = UIAlertAction(title: "Add Item", style: .default, handler: { (UIAlertAction) in
+            self.itemArray.append(textField.text ?? "")
+            self.tableView.reloadData()
+        })
+        alert.addTextField { (alerttextField) in
+            alerttextField.placeholder = "Create new item"
+            textField = alerttextField
+        }
+        
+        alert.addAction(actions)
+        present(alert, animated: true, completion: nil)
+        
+    }
     
     
     
