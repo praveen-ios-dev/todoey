@@ -7,15 +7,18 @@
 //
 
 import UIKit
+import CoreData
 
 class TodoeyViewController: UITableViewController {
     
-    var dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
+    //var dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("item.plist")
     
     var itemArray = [item]()
+    let contextdata = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     let defaults = UserDefaults.standard
     override func viewDidLoad() {
         super.viewDidLoad()
+        print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loaditem()
     }
     
@@ -32,7 +35,7 @@ class TodoeyViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemArray.count
     }
-
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         itemArray[indexPath.row].done = !itemArray[indexPath.row].done
@@ -44,9 +47,13 @@ class TodoeyViewController: UITableViewController {
         if editingStyle == .delete {
             print("Deleted")
             
+            //Update/Delete opreration
+            
+            self.contextdata.delete(itemArray[indexPath.row])
             self.itemArray.remove(at: indexPath.row)
+            self.saveitem()
+            
             self.tableView.deleteRows(at: [indexPath], with: .automatic)
-            dataFilePath?.removeAllCachedResourceValues()
         }
     }
     
@@ -54,10 +61,11 @@ class TodoeyViewController: UITableViewController {
         var textField = UITextField()
         let alert = UIAlertController(title: "Add new todoey", message: nil, preferredStyle: .alert)
         let actions = UIAlertAction(title: "Add Item", style: .default, handler: { (UIAlertAction) in
-            let newitem = item()
+           
+            let newitem = item(context: self.contextdata)
             newitem.title = textField.text!
-            if !newitem.title.isEmpty{
-               self.itemArray.append(newitem)
+            if !newitem.title!.isEmpty{
+                self.itemArray.append(newitem)
             }
             self.saveitem()
             self.tableView.reloadData()
@@ -66,45 +74,43 @@ class TodoeyViewController: UITableViewController {
             alerttextField.placeholder = "Create new item"
             textField = alerttextField
         }
+        
         let action2 = UIAlertAction(title: "cancle", style: .destructive) { (UIAlertAction) in
-        
+            
         }
-        
-        
-            alert.addAction(action2)
-            alert.addAction(actions)
+        alert.addAction(action2)
+        alert.addAction(actions)
         present(alert, animated: true, completion: nil)
         
     }
     
     func saveitem(){
-        let encoder = PropertyListEncoder()
         do{
-            let data = try encoder.encode(self.itemArray)
-            try data.write(to: self.dataFilePath!)
+            // core datea create operation
+            try contextdata.save()
         }catch{
-            print("error encoding item array \(error)")
+          print("error saving contex\(error)")
         }
     }
     
     func loaditem(){
-        if let data = try? Data(contentsOf: dataFilePath!){
-        let decoder = PropertyListDecoder()
-            do{
-                itemArray = try decoder.decode([item].self, from: data)
-            }catch{
-                print("error msg is \(error)")
-            }
+        let request: NSFetchRequest<item> = item.fetchRequest()
+        do{
+            
+            // core data Read/Fetch operation
+            itemArray = try contextdata.fetch(request)
+        }catch{
+            print("error msg is \(error)")
         }
         
-        
+      
     }
     
     
     
     
     
-
+    
 }
 
 
