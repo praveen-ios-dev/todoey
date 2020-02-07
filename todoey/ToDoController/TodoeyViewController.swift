@@ -15,11 +15,14 @@ class TodoeyViewController: UITableViewController {
     
     var itemArray = [item]()
     let contextdata = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-    let defaults = UserDefaults.standard
+    //let defaults = UserDefaults.standard
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
+        //print (FileManager.default.urls(for: .documentDirectory, in: .userDomainMask))
         loaditem()
+        
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -46,9 +49,6 @@ class TodoeyViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             print("Deleted")
-            
-            //Update/Delete opreration
-            
             self.contextdata.delete(itemArray[indexPath.row])
             self.itemArray.remove(at: indexPath.row)
             self.saveitem()
@@ -61,7 +61,7 @@ class TodoeyViewController: UITableViewController {
         var textField = UITextField()
         let alert = UIAlertController(title: "Add new todoey", message: nil, preferredStyle: .alert)
         let actions = UIAlertAction(title: "Add Item", style: .default, handler: { (UIAlertAction) in
-           
+            
             let newitem = item(context: self.contextdata)
             newitem.title = textField.text!
             if !newitem.title!.isEmpty{
@@ -89,30 +89,42 @@ class TodoeyViewController: UITableViewController {
             // core datea create operation
             try contextdata.save()
         }catch{
-          print("error saving contex\(error)")
+            print("error saving contex\(error)")
         }
     }
     
-    func loaditem(){
-        let request: NSFetchRequest<item> = item.fetchRequest()
+    func loaditem(with request: NSFetchRequest<item> = item.fetchRequest()){
         do{
-            
             // core data Read/Fetch operation
             itemArray = try contextdata.fetch(request)
         }catch{
             print("error msg is \(error)")
         }
+        tableView.reloadData()
         
-      
     }
-    
-    
-    
-    
-    
     
 }
 
-
+extension TodoeyViewController : UISearchBarDelegate{
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request: NSFetchRequest<item> = item.fetchRequest()
+        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
+        loaditem(with: request)
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            loaditem()
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+        }
+    }
+    
+}
 
 

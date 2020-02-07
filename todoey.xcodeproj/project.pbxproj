@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC6AB62223ECE4650077B375 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6AB62123ECE4650077B375 /* CategoryViewController.swift */; };
 		BCC806D323EB989000F814A8 /* coredataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = BCC806D123EB989000F814A8 /* coredataModel.xcdatamodeld */; };
 		BCD02B1F23D463B3004448D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD02B1E23D463B3004448D2 /* AppDelegate.swift */; };
 		BCD02B2123D463B3004448D2 /* TodoeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCD02B2023D463B3004448D2 /* TodoeyViewController.swift */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BC6AB62123ECE4650077B375 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		BCC806D223EB989000F814A8 /* coredataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = coredataModel.xcdatamodel; sourceTree = "<group>"; };
 		BCD02B1B23D463B3004448D2 /* todoey.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = todoey.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCD02B1E23D463B3004448D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 		BCFF2C1223E8F83000D626A6 /* ToDoController */ = {
 			isa = PBXGroup;
 			children = (
+				BC6AB62123ECE4650077B375 /* CategoryViewController.swift */,
 				BCD02B2023D463B3004448D2 /* TodoeyViewController.swift */,
 			);
 			path = ToDoController;
@@ -166,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC6AB62223ECE4650077B375 /* CategoryViewController.swift in Sources */,
 				BCD02B2123D463B3004448D2 /* TodoeyViewController.swift in Sources */,
 				BCC806D323EB989000F814A8 /* coredataModel.xcdatamodeld in Sources */,
 				BCD02B1F23D463B3004448D2 /* AppDelegate.swift in Sources */,
